@@ -1,4 +1,8 @@
-﻿@if (StatusMessage.HasData)
+﻿@using Microsoft.Extensions.Logging;
+@inject ILoggerFactory logFactory
+@implements IObserver
+
+@if ( StatusMessage != null && StatusMessage.HasData)
 {
     <div class="box-status box-@CssClass() p-2 w-100">
         <div class="box-status-header">
@@ -11,10 +15,18 @@
 }
 @code {
     [Parameter]
-    public StatusMessage StatusMessage { get; set; } = new();
+
+    public IStatusMessage? StatusMessage { get; set; }
+    public GuiElement GuiElement { get => GuiElement.StatusBox; }
+
+    public void HandleUpdate()
+    {
+        StateHasChanged();
+    }
 
     private string CssClass()
     {
+        if (StatusMessage == null) return "null";
         switch (StatusMessage.Status)
         {
             case StatusType.Success: return "success";
