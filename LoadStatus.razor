@@ -1,0 +1,40 @@
+﻿<table class="mb-2 p-3 w-100" cellpadding="12" style="border: 1px dotted black; background-color: rgba(240, 240, 240, 1); opacity: .5;">
+    <tr>
+        @if (LoadingStatus == PageStatus.DataIsLoading)
+        {
+            <td width="10">
+                <div class="spinner-border text-primary float-start" role="status" aria-hidden="true" />
+            </td>
+        }
+        <td>
+            <h5 class="card-title">Please wait</h5>
+            <div class="card-text">
+                @switch (LoadingStatus)
+                {
+                    case PageStatus.Undefined:
+                        <text>Page status is undefined</text>
+                        break;
+                    case PageStatus.ComponentIsInitializing:
+                        <text>Initializing component ...</text>
+                        break;
+                    case PageStatus.DataIsLoading:
+                        <text>Retrieving data ...</text>
+                        <div class="card-text">
+                            <small class="text-muted">This usually takes @ExpectedWait seconds ...</small>
+                        </div>
+                        break;
+                    default:
+                        <text>You should not see this ...</text>
+                        break;
+                }
+            </div>
+        </td>
+    </tr>
+</table>
+
+@code {
+    [Parameter]
+    public PageStatus LoadingStatus { get; set; } = PageStatus.Undefined;
+    [Parameter]
+    public string ExpectedWait { get; set; } = string.Empty;
+}

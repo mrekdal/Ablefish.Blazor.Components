@@ -1,0 +1,27 @@
+﻿@if (StatusMessage.HasData)
+{
+    <div class="box-status box-@CssClass() p-2 w-100">
+        <div class="box-status-header">
+            @StatusMessage.Header
+        </div>
+        <div class="box-@CssClass()-message">
+            @((MarkupString)StatusMessage.Text)
+        </div>
+    </div>
+}
+@code {
+    [Parameter]
+    public StatusMessage StatusMessage { get; set; } = new();
+
+    private string CssClass()
+    {
+        switch (StatusMessage.Status)
+        {
+            case StatusType.Success: return "success";
+            case StatusType.Information: return "info";
+            case StatusType.Warning: return "warning";
+            case StatusType.Error: return "error";
+            default: return "info";
+        }
+    }
+}
