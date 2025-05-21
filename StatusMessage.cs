@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using Ablefish.Blazor.Observer;
 
-namespace Ablefish.Blazor.Components
+namespace Ablefish.Blazor.Status
 {
     public enum StatusType { None, Success, Information, Warning, Error };
 

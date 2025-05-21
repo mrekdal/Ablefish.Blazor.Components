@@ -1,5 +1,6 @@
-﻿
-namespace Ablefish.Blazor.Components
+﻿using Ablefish.Blazor.Observer;
+
+namespace Ablefish.Blazor.Status
 {
     public interface IStatusMessage: ISubjectMinimal
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Ablefish.Blazor.Components
+namespace Ablefish.Blazor.Observer
 {
     public class SubjectBase : ISubject
     {
