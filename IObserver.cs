@@ -1,7 +1,7 @@
 ﻿namespace Ablefish.Blazor.Components
 {
 
-    public enum GuiElement { None, Class, Candidates, Members, LabClasses, Editor, Statusbar, StatusBox }
+    public enum GuiElement { None, Class, Candidates, Members, LabClasses, Editor, Statusbar, StatusBox, Subject, Context }
 
     public interface IObserver
     {
