@@ -9,8 +9,10 @@ namespace Ablefish.Blazor.Components
         StatusType Status { get; }
         string Text { get; }
 
+        void Clear();
         void SetException(Exception exception);
         void SetInformation(string statusHeader, string statusText);
+        void SetWarning(string statusHeader, string statusText);
         void SetSuccess(string statusHeader, string statusText);
         void Update(string statusHeader, string statusText, StatusType statusType);
     }

@@ -41,6 +41,10 @@ namespace Ablefish.Blazor.Components
             Update("An unexpected error occurred", exception.Message, StatusType.Error);
         }
 
+        public void SetWarning( string statusHeader, string statusText )
+        {
+            Update(statusHeader, statusText,StatusType.Warning);
+        }
         public void SetInformation(string statusHeader, string statusText)
         {
             Update(statusHeader, statusText, StatusType.Information);
