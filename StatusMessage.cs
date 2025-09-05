@@ -8,7 +8,7 @@ namespace Ablefish.Blazor.Status
     public class StatusMessage : ISubjectMinimal, IDisposable, IStatusMessage
     {
         private readonly ILogger<StatusMessage>? _logger;
-        private readonly SubjectBase _subjectBase = new("StatusMessage", new LoggerFactory());
+        private readonly SubjectLogged _subjectBase = new("StatusMessage", new LoggerFactory());
 
         public StatusMessage(ILogger<StatusMessage> logger)
         {
@@ -26,6 +26,10 @@ namespace Ablefish.Blazor.Status
         {
             _subjectBase.Attach(observer);
         }
+        public void Detach(IObserver observer)
+        {
+            _subjectBase.Detach(observer);
+        }
 
         public void Clear()
         {
@@ -42,9 +46,9 @@ namespace Ablefish.Blazor.Status
             Update("An unexpected error occurred", exception.Message, StatusType.Error);
         }
 
-        public void SetWarning( string statusHeader, string statusText )
+        public void SetWarning(string statusHeader, string statusText)
         {
-            Update(statusHeader, statusText,StatusType.Warning);
+            Update(statusHeader, statusText, StatusType.Warning);
         }
         public void SetInformation(string statusHeader, string statusText)
         {
@@ -82,7 +86,7 @@ namespace Ablefish.Blazor.Status
             Status = statusType;
             Header = statusHeader;
             Text = statusText;
-            _subjectBase.Notify(GuiElement.StatusBox);
+            _subjectBase.Notify();
         }
     }
 }

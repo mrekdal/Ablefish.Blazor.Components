@@ -3,7 +3,11 @@
 
     public interface IObserver
     {
-        void HandleUpdate(); // Called when the subject notifies
+        void HandleUpdate(); 
+    }
+
+    public interface IObserverGui : IObserver
+    {
         GuiElement GuiElement { get; }
     }
 
@@ -11,10 +15,16 @@
     {
         void Attach(IObserver observer); // Add an observer
     }
+
     public interface ISubject: ISubjectMinimal
     {
         void Detach(IObserver observer); // Remove an observer
-        void Notify(GuiElement whatChanged); // Notify all observers
+        void Notify(); // Notify all observers
+    }
+
+    public interface ISubjectGui : ISubject
+    {
+        void NotifyGui(GuiElement whatChanged); // Notify all observers
     }
 
 }
